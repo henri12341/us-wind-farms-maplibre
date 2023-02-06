@@ -45,6 +45,50 @@
         })
     ;})
 
+map.on('load', function () {
+    map.addSource('points', {
+        'type': 'geojson',
+        'data': {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'geometry': {
+                'type': 'Point',
+                'coordinates': [-121.415061, 40.506229]
+                }
+            },
+            {
+                'type': 'Feature',
+                'geometry': {
+                'type': 'Point',
+                'coordinates': [-121.505184, 40.488084]
+                }
+            },
+            {
+                'type': 'Feature',
+                'geometry': {
+                'type': 'Point',
+                'coordinates': [-121.354465, 40.488737]
+                }
+            }
+        ]
+        }
+    });
+
+
+    map.addLayer({
+    'id': 'points',
+    'type': 'circle',
+    'source': 'points',
+    'paint': {
+    'circle-radius': 3,
+    'circle-color': '#B42222'
+    },
+    'filter': ['==', '$type', 'Point']
+    });
+    });
+
     var marker = new maplibregl.Marker()
     .setLngLat([12.550343, 55.665957])
     .addTo(map);
