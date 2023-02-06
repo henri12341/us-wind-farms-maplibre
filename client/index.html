@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script src='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js'></script>
+        <link href='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css' rel='stylesheet' />
+        <script src="api.js"></script>
+    </head>
+    <body>
+        <div id='map' style='width: 800px; height: 600px;'></div>
+    </body>
+</html>
+
+<script>
+    var map = new maplibregl.Map({
+    container: 'map',
+    style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 3 // starting zoom
+    });
+
+    const main = async () => {
+        var wind_turbines = await getWindTurbineData()
+
+        var data = []
+        for (let i = 0; i < wind_turbines.length; i++) {
+            data.push({
+                    'type': 'Feature',
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [wind_turbines[i]["xlong"], wind_turbines[i]["ylat"]]
+                    }
+                })
+        }
+
+
+        map.on('load', function () {
+            map.addSource('points', {
+                'type': 'geojson',
+                'data': {
+                'type': 'FeatureCollection',
+                'features': data
+                }
+            });
+
+
+        map.addLayer({
+                'id': 'points',
+                'type': 'circle',
+                'source': 'points',
+                'paint': {
+                    'circle-radius': 3,
+                    'circle-color': '#3887be'
+                },
+            });
+        });
+    }
+    main()
+
+
+    var marker = new maplibregl.Marker()
+    .setLngLat([12.550343, 55.665957])
+    .addTo(map);
+
+</script>
