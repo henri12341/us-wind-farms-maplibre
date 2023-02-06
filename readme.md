@@ -1,5 +1,9 @@
 Project goal: plot us wind turbine locations using maplibre
 
+Installation:
+1. server folder: npm install
+2. open index.html
+
 Data is from US wind turbine database:
 https://eerscmap.usgs.gov/uswtdb/api-doc/
 
