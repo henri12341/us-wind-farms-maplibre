@@ -5,7 +5,9 @@ Installation:
 2. open index.html
 
 Data is from US wind turbine database:
-https://eerscmap.usgs.gov/uswtdb/api-doc/
+Map services and data are available from U.S. Wind Turbine Database,
+provided by the U.S. Geological Survey, American Clean Power Association,
+and Lawrence Berkeley National Laboratory via https://eerscmap.usgs.gov/uswtdb
 
 ![Alt text](us-map.jpg?raw=true "us-map")
 ![Alt text](wind_turbines.jpg?raw=true "wind_turbines")
