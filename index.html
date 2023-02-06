@@ -45,48 +45,38 @@
         })
     ;})
 
-map.on('load', function () {
-    map.addSource('points', {
-        'type': 'geojson',
-        'data': {
-        'type': 'FeatureCollection',
-        'features': [
-            {
-                'type': 'Feature',
-                'geometry': {
-                'type': 'Point',
-                'coordinates': [-121.415061, 40.506229]
-                }
-            },
-            {
-                'type': 'Feature',
-                'geometry': {
-                'type': 'Point',
-                'coordinates': [-121.505184, 40.488084]
-                }
-            },
-            {
-                'type': 'Feature',
-                'geometry': {
-                'type': 'Point',
-                'coordinates': [-121.354465, 40.488737]
-                }
+    var coords = [[-121.415061, 40.506229], [-121.505184, 40.488084], [-121.354465, 40.488737]]
+    var array = []
+
+    for (let i = 0; i < coords.length; i++) {
+        array.push({
+                    'type': 'Feature',
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': coords[i]
+                    }
+                })
+    }
+
+    map.on('load', function () {
+        map.addSource('points', {
+            'type': 'geojson',
+            'data': {
+            'type': 'FeatureCollection',
+            'features': array
             }
-        ]
-        }
-    });
+        });
 
 
     map.addLayer({
-    'id': 'points',
-    'type': 'circle',
-    'source': 'points',
-    'paint': {
-    'circle-radius': 3,
-    'circle-color': '#B42222'
-    },
-    'filter': ['==', '$type', 'Point']
-    });
+            'id': 'points',
+            'type': 'circle',
+            'source': 'points',
+            'paint': {
+                'circle-radius': 3,
+                'circle-color': '#3887be'
+            },
+        });
     });
 
     var marker = new maplibregl.Marker()
