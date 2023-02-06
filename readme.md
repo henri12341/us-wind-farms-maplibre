@@ -2,7 +2,8 @@ Project goal: plot us wind turbine locations using maplibre
 
 Installation:
 1. server folder: npm install
-2. open index.html
+2. server folder: node server.js
+3. client folder: open index.html
 
 Data is from US wind turbine database:
 Map services and data are available from U.S. Wind Turbine Database,
