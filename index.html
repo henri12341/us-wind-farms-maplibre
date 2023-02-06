@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js'></script>
+        <link href='https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css' rel='stylesheet' />
+    </head>
+    <body>
+        <div id='map' style='width: 800px; height: 600px;'></div>
+    </body>
+</html>
+
+<script>
+    var map = new maplibregl.Map({
+    container: 'map',
+    style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 3 // starting zoom
+    });
+
+    var geojson = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [-74.5, 40]
+            }
+    }]};
+
+    map.on('load', function () {
+        // Add a single point to the map
+        map.addSource('point', {
+        'type': 'geojson',
+        'data': geojson
+        });
+
+        map.addLayer({
+            'id': 'point',
+            'type': 'circle',
+            'source': 'point',
+            'paint': {
+                'circle-radius': 10,
+                'circle-color': '#3887be'
+            }
+        })
+;})
+
+</script>
